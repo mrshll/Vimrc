@@ -1,3 +1,12 @@
+" VIMRC (pieces picked from multiple sources, primarily
+" "   http://www.vim.org/scripts/script.php?script_id=760
+" "   http://amix.dk/vim/vimrc.html
+" "   http://stackoverflow.com/questions/164847/what-is-in-your-vimrc
+"
+" " Catered to the needs and woes of a Tufts University Comp40 student
+" " Contact Marshall @ mmoutenot@gmail.com with questions or comments.
+"
+
 "{{{Auto Commands
 
 " Automatically cd into the directory that the file is in
