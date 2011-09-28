@@ -45,6 +45,9 @@ augroup END
 
 "{{{Misc Settings
 
+":make runs this script!
+set makeprg=./compile
+
 " Necessary for a lot of cool vim things
 set nocompatible
 
