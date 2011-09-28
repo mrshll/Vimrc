@@ -1,0 +1,3 @@
+This is my VIMRC configuration and color scheme. Config file is commented to describe all functionality.
+
+To install, place the .vimrc file in your home directory and place the theme file in ~/.vim/colors/
