@@ -234,4 +234,11 @@ map n nzz
 " Swap ; and : (one less keypress)
 nnoremap ; :
 nnoremap : ;
+" Swap ; and : in command prompt as well
+cnoremap ; ;
+cnoremap ; :
 
+" Caps save and quit
+ca W w
+ca Q q
+ca WQ wq
