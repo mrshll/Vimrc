@@ -47,6 +47,8 @@ augroup END
 
 ":make runs this script!
 set makeprg=./compile
+" <F9> saves and compiles
+nnoremap <F9> :w<bar>:make<bar><CR>
 
 " Necessary for a lot of cool vim things
 set nocompatible
