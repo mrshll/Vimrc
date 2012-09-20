@@ -1,0 +1,23 @@
+  __  __                _           _ _ _      __      _______ __  __ _____   _____
+ |  \/  |              | |         | | ( )     \ \    / /_   _|  \/  |  __ \ / ____|
+ | \  / | __ _ _ __ ___| |__   __ _| | |/ ___   \ \  / /  | | | \  / | |__) | |
+ | |\/| |/ _` | '__/ __| '_ \ / _` | | | / __|   \ \/ /   | | | |\/| |  _  /| |
+ | |  | | (_| | |  \__ \ | | | (_| | | | \__ \    \  /   _| |_| |  | | | \ \| |____
+ |_|  |_|\__,_|_|  |___/_| |_|\__,_|_|_| |___/     \/   |_____|_|  |_|_|  \_\\_____|
+
+
+Just copy to your home directory.
+
+Some cool stuff that I can think of right now:
+,vi opens your vimrc
+,t opens new tab
+,s opens new split
+
+Arrow keys do not work, they will remove whitespace above (^) indent (>,<) and
+insert whitespace above (V). This is so that you get good at VIM!
+
+run ':BundleInstall' from within vim to get any missing packages using Vundle
+
+It's bedtime but I'll update this soon enough.
+
+
