@@ -1,0 +1,2 @@
+supertab.vba: call delete('/home/marshall/.vim/doc/supertab.txt')|call delete('/home/marshall/.vim/plugin/supertab.vim')
+tcomment.vba: call delete('/home/marshall/.vim/doc/tcomment.txt')|call delete('/home/marshall/.vim/plugin/tcomment.vim')|call delete('/home/marshall/.vim/autoload/tcomment.vim')
