@@ -127,6 +127,9 @@ set expandtab
 set smarttab
 set shiftwidth=2
 set softtabstop=2
+" YEAH that's right. I started using 2 spaces per tab. That's because when you
+" care about good looking code, and you're limiting yourself to 80 cols, EVERY
+" SPACE COUNTS.
 
 " Spell checking (default=false)
 if version >= 700
@@ -139,7 +142,6 @@ endif
 "set wildmode=list:longest,full
 
 set backspace=2
-
 
 set autoindent
 
@@ -180,7 +182,6 @@ set guioptions-=T
 set t_Co=256
 set background=dark
 colorscheme ir_black
-set nonu
 set encoding=utf8
 
 try
