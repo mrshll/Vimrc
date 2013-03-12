@@ -3,10 +3,9 @@
 " "   http://amix.dk/vim/vimrc.html
 " "   http://stackoverflow.com/questions/164847/what-is-in-your-vimrc
 "
-" " Catered to the needs and woes of a Tufts University Comp40 student
+" " Catered to the needs and woes of a Tufts University student
 " " Contact Marshall @ mmoutenot@gmail.com with questions or comments.
-"
-" Necessary for a lot of cool vim things
+
 set nocompatible
 filetype off
 
@@ -18,32 +17,64 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " My Bundles here:
-"
-" original repos on github
+
+" Allows you to use <tab> for all insert completion needs
 Bundle 'ervandew/supertab'
+
+" Comment plugin - gcc toggles comment of current line
 Bundle 'tomtom/tcomment_vim'
+
+" adds cool git stuff from within vim
 Bundle 'tpope/vim-fugitive'
+
+" cs"' changes surrounding " to '
 Bundle 'tpope/vim-surround'
+
+" quick file switcher
 Bundle 'wincent/Command-T'
+
 Bundle 'vim-scripts/right_align'
 
 " Snipmate and dependencies
+" Allows you to complete code snipits like 'for loops'!
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "honza/snipmate-snippets"
 Bundle 'garbas/vim-snipmate'
 
+" fantastic file browser, open a directory with vim
 Bundle 'scrooloose/nerdtree'
-Bundle 'rson/vim-conque'
+
+" Aligns on any character with ':Align ='
 Bundle 'vim-scripts/Align'
+
+" Run ack from within vim!
 Bundle 'mileszs/ack.vim'
+
+" 1. Open NERDtree
+" 2. Point to a directory
+" 3. Press `ms`
+" 4. Enter search term (e.g. `control\ panel -i`)
+" 5. Profit!
 Bundle 'vim-scripts/nerdtree-ack'
+
+" BEAUTIFUL COLORZ
+Bundle 'altercation/vim-colors-solarized'
+
+" BEAUTIFUL POWERLINE
+Bundle 'Lokaltog/vim-powerline'
+
+" Let's try YouCompleteMe
+Bundle 'Valloric/YouCompleteMe'
+
+" Git gutter shows diffs on the left num bar!
+Bundle 'airblade/vim-gitgutter'
 
 
 "{{{Auto Commands
 
 " Automatically cd into the directory that the file is in
-set autochdir
+" set autochdir
 
 " Remove any trailing whitespace that is in the file
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
@@ -78,18 +109,12 @@ augroup END
 
 "{{{Misc Settings
 
-":make runs this script!
-set makeprg=./compile
-
 " This shows what you are typing as a command at the bottom of the page
 set showcmd
 set cmdheight=2
 
-" Folding Stuffs
-" I find this one a little annoying sometimes
-" set foldmethod=marker
-set wrap
-set textwidth=80
+" set wrap
+" set textwidth=80
 let g:RightAlign_RightBorder=80
 if exists('+colorcolumn')
   set colorcolumn=80
@@ -102,12 +127,12 @@ filetype off
 filetype plugin on
 filetype indent on
 
+
 " read a file when it is changed from the outside
 set autoread
 
 " Use grep
 set grepprg=grep\ -nH\ $*
-
 
 " Make the omnicomplete text readable
 highlight PmenuSel ctermfg=black
@@ -127,9 +152,6 @@ set expandtab
 set smarttab
 set shiftwidth=2
 set softtabstop=2
-" YEAH that's right. I started using 2 spaces per tab. That's because when you
-" care about good looking code, and you're limiting yourself to 80 cols, EVERY
-" SPACE COUNTS.
 
 " Spell checking (default=false)
 if version >= 700
@@ -137,12 +159,10 @@ if version >= 700
   set nospell
 endif
 
-" Tab completion
-"set wildmenu
-"set wildmode=list:longest,full
+" Mainly for Command-T
+set wildignore+=*.o,*.obj,.git,*.png,*env
 
 set backspace=2
-
 set autoindent
 
 " Case handling
@@ -159,7 +179,6 @@ let g:clipbrdDefaultReg = '+'
 
 " Second paren
 highlight MatchParen ctermbg=4
-
 "}}}
 
 
@@ -178,10 +197,15 @@ set shell=/bin/bash
 "  set gfn=Monospace\ 10
 "  set shell=/bin/bash
 
+" set t_Co=256
+" set background=dark
+" colorscheme ir_black
+
+" hides the bullsheet
 set guioptions-=T
-set t_Co=256
+
 set background=dark
-colorscheme ir_black
+colorscheme solarized
 set encoding=utf8
 
 try
@@ -191,20 +215,20 @@ endtry
 
 set ffs=unix,dos,mac "Default file types
 
-"Status line gnarliness
-set laststatus=2
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
-function! CurDir()
-  let curdir = substitute(getcwd(), '/Users/amir/', "~/", "g")
-  return curdir
-endfunction
-function! HasPaste()
-  if &paste
-    return 'PASTE MODE  '
-  else
-    return ''
-  endif
-endfunction
+"Status line gnarliness - I use powerline now
+" set laststatus=2
+" set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
+" function! CurDir()
+"   let curdir = substitute(getcwd(), '/Users/amir/', "~/", "g")
+"   return curdir
+" endfunction
+" function! HasPaste()
+"   if &paste
+"     return 'PASTE MODE  '
+"   else
+"     return ''
+"   endif
+" endfunction
 
 " No sound on errors
 set noerrorbells
@@ -274,12 +298,12 @@ noremap <Leader>vi :tabe ~/.vimrc<CR>
 noremap <Leader>e :e <C-R>=expand("%:p:h") . '/'<CR>
 noremap <Leader>s :split
 noremap <Leader>v :vnew
-noremap <Leader>t :tabe <C-R><CR>
+" noremap <Leader>t :tabe <C-R><CR>
 " Emacs-like beginning and end of line.
 imap <c-e> <c-o>$
 imap <c-a> <c-o>^
 
-" Open Url with the browser \w
+" Open Url with the browser ',w'
 map <Leader>w :call Browser ()<CR>
 
 " Trigger the above todo mode
@@ -289,9 +313,9 @@ noremap <silent> <Leader>todo :execute TodoListMode()<CR>
 nnoremap <leader>ft Vatzf
 
 " Next Tab
-noremap <silent> <C-Right> :tabnext<CR>
+noremap <silent> <C-L> :tabnext<CR>
 " Previous Tab
-noremap <silent> <C-Left> :tabprevious<CR>
+noremap <silent> <C-H> :tabprevious<CR>
 " New Tab
 noremap <silent> <C-t> :tabnew<CR>
 
@@ -411,33 +435,33 @@ noremap <D-S-L> <C-w>l
 noremap <leader>ksh :ConqueTermSplit /bin/ksh<cr>
 
 " DJANGO STUFF
-let g:last_relative_dir = ''
-nnoremap \1 :call RelatedFile ("models.py")<cr>
-nnoremap \2 :call RelatedFile ("views.py")<cr>
-nnoremap \3 :call RelatedFile ("urls.py")<cr>
-nnoremap \4 :call RelatedFile ("admin.py")<cr>
-nnoremap \5 :call RelatedFile ("tests.py")<cr>
-nnoremap \6 :call RelatedFile ( "templates/" )<cr>
-nnoremap \7 :call RelatedFile ( "templatetags/" )<cr>
-nnoremap \8 :call RelatedFile ( "management/" )<cr>
-nnoremap \0 :e settings.py<cr>
-nnoremap \9 :e urls.py<cr>
-map <F8> :vertical wincmd f<CR>
-
-fun! RelatedFile(file)
-  #This is to check that the directory looks djangoish
-  if filereadable(expand("%:h"). '/models.py') || isdirectory(expand("%:h") . "/templatetags/")
-    exec "edit %:h/" . a:file
-    let g:last_relative_dir = expand("%:h") . '/'
-    return ''
-  endif
-  if g:last_relative_dir != ''
-    exec "edit " . g:last_relative_dir . a:file
-    return ''
-  endif
-  echo "Cant determine where relative file is : " . a:file
-  return ''
-endfun
+" let g:last_relative_dir = ''
+" nnoremap \1 :call RelatedFile ("models.py")<cr>
+" nnoremap \2 :call RelatedFile ("views.py")<cr>
+" nnoremap \3 :call RelatedFile ("urls.py")<cr>
+" nnoremap \4 :call RelatedFile ("admin.py")<cr>
+" nnoremap \5 :call RelatedFile ("tests.py")<cr>
+" nnoremap \6 :call RelatedFile ( "templates/" )<cr>
+" nnoremap \7 :call RelatedFile ( "templatetags/" )<cr>
+" nnoremap \8 :call RelatedFile ( "management/" )<cr>
+" nnoremap \0 :e settings.py<cr>
+" nnoremap \9 :e urls.py<cr>
+" map <F8> :vertical wincmd f<CR>
+"
+" fun! RelatedFile(file)
+"   #This is to check that the directory looks djangoish
+"   if filereadable(expand("%:h"). '/models.py') || isdirectory(expand("%:h") . "/templatetags/")
+"     exec "edit %:h/" . a:file
+"     let g:last_relative_dir = expand("%:h") . '/'
+"     return ''
+"   endif
+"   if g:last_relative_dir != ''
+"     exec "edit " . g:last_relative_dir . a:file
+"     return ''
+"   endif
+"   echo "Cant determine where relative file is : " . a:file
+"   return ''
+" endfun
 
 " fun SetAppDir()
 "     if filereadable(expand("%:h"). '/models.py') || isdirectory(expand("%:h") . "/templatetags/")
@@ -446,49 +470,50 @@ endfun
 "     endif
 " endfun
 " autocmd BufEnter *.py call SetAppDir()
+"
+" function! Grep(name)
+"   let l:pattern = input("Other pattern: ")
+"   "let l:_name = substitute(a:name, "\\s", "*", "g")
+"   let l:list=system("grep -nIR '".a:name."' * | grep -v 'svn-base' | grep '" .l:pattern. "' | cat -n -")
+"   let l:num=strlen(substitute(l:list, "[^\n]", "", "g"))
+"   if l:num < 1
+"     echo "'".a:name."' not found"
+"     return
+"   endif
+"
+"   echo l:list
+"   let l:input=input("Which?\n")
+"
+"   if strlen(l:input)==0
+"     return
+"   endif
+"
+"   if strlen(substitute(l:input, "[0-9]", "", "g"))>0
+"     echo "Not a number"
+"     return
+"   endif
+"
+"   if l:input<1 || l:input>l:num
+"     echo "Out of range"
+"     return
+"   endif
+"
+"   let l:line=matchstr("\n".l:list, "".l:input."\t[^\n]*")
+"   let l:lineno=matchstr(l:line,":[0-9]*:")
+"   let l:lineno=substitute(l:lineno,":","","g")
+"   "echo "".l:line
+"   let l:line=substitute(l:line, "^[^\t]*\t", "", "")
+"   "echo "".l:line
+"   let l:line=substitute(l:line, "\:.*", "", "")
+"   "echo "".l:line
+"   "echo "\n".l:line
+"   execute ":e ".l:line
+"   execute "normal ".l:lineno."gg"
+" endfunction
+" command! -nargs=1 Grep :call Grep("<args>")
+" map <leader>g "syiw:Grep^Rs<cr>
 
-function! Grep(name)
-  let l:pattern = input("Other pattern: ")
-  "let l:_name = substitute(a:name, "\\s", "*", "g")
-  let l:list=system("grep -nIR '".a:name."' * | grep -v 'svn-base' | grep '" .l:pattern. "' | cat -n -")
-  let l:num=strlen(substitute(l:list, "[^\n]", "", "g"))
-  if l:num < 1
-    echo "'".a:name."' not found"
-    return
-  endif
 
-  echo l:list
-  let l:input=input("Which?\n")
-
-  if strlen(l:input)==0
-    return
-  endif
-
-  if strlen(substitute(l:input, "[0-9]", "", "g"))>0
-    echo "Not a number"
-    return
-  endif
-
-  if l:input<1 || l:input>l:num
-    echo "Out of range"
-    return
-  endif
-
-  let l:line=matchstr("\n".l:list, "".l:input."\t[^\n]*")
-  let l:lineno=matchstr(l:line,":[0-9]*:")
-  let l:lineno=substitute(l:lineno,":","","g")
-  "echo "".l:line
-  let l:line=substitute(l:line, "^[^\t]*\t", "", "")
-  "echo "".l:line
-  let l:line=substitute(l:line, "\:.*", "", "")
-  "echo "".l:line
-  "echo "\n".l:line
-  execute ":e ".l:line
-  execute "normal ".l:lineno."gg"
-endfunction
-command! -nargs=1 Grep :call Grep("<args>")
-map <leader>g "syiw:Grep^Rs<cr>
-
-" Always show line numbers and current position
+" Always show line numbers and current position. ALWAYS!
 set ruler
 set number
