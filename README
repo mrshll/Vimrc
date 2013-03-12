@@ -6,18 +6,29 @@
  |_|  |_|\__,_|_|  |___/_| |_|\__,_|_|_| |___/     \/   |_____|_|  |_|_|  \_\\_____|
 
 
-Just copy to your home directory.
+Start by cloning this git repository:
 
-Some cool stuff that I can think of right now:
-,vi opens your vimrc
-,t opens new tab
-,s opens new split
+    git clone https://github.com/mmoutenot/Vimrc.git
 
-Arrow keys do not work, they will remove whitespace above (^) indent (>,<) and
-insert whitespace above (V). This is so that you get good at VIM!
+You can now either run install.sh or run the steps manually.
 
-run ':BundleInstall' from within vim to get any missing packages using Vundle
+===============================================================================
 
-It's bedtime but I'll update this soon enough.
+Copy the .vimrc to your home directory:
+
+    cp Vimrc/.vimrc ~/
+
+Set up Vundle, a vim package manager
+
+    git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+
+Run vim with the new configuration file
+
+    vim
+
+While in vim, run this command (note ';' is remapped to ':')
+
+    :BundleInstall
+
 
 
