@@ -12,6 +12,8 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+let mapleader = ","
+
 " let Vundle manage Vundle
 " required!
 Bundle 'gmarik/vundle'
@@ -35,21 +37,25 @@ Bundle 'wincent/Command-T'
 
 Bundle 'vim-scripts/right_align'
 
+
 " Snipmate and dependencies
 " Allows you to complete code snipits like 'for loops'!
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "honza/snipmate-snippets"
-Bundle 'garbas/vim-snipmate'
+" Bundle "MarcWeber/vim-addon-mw-utils"
+" Bundle "tomtom/tlib_vim"
+" Bundle "honza/snipmate-snippets"
+" Bundle 'garbas/vim-snipmate'
 
 " fantastic file browser, open a directory with vim
 Bundle 'scrooloose/nerdtree'
+autocmd vimenter * NERDTree
+noremap <Leader>a :NERDTreeFocus<CR>
 
 " Aligns on any character with ':Align ='
 Bundle 'vim-scripts/Align'
 
 " Run ack from within vim!
-Bundle 'mileszs/ack.vim'
+Bundle 'rking/ag.vim'
+noremap <Leader>a :Ag <cword><cr>
 
 " 1. Open NERDtree
 " 2. Point to a directory
@@ -64,12 +70,14 @@ Bundle 'altercation/vim-colors-solarized'
 " BEAUTIFUL POWERLINE
 Bundle 'Lokaltog/vim-powerline'
 
-" Let's try YouCompleteMe
-Bundle 'Valloric/YouCompleteMe'
-
 " Git gutter shows diffs on the left num bar!
 Bundle 'airblade/vim-gitgutter'
 
+" Coffeescript support
+Bundle 'kchmck/vim-coffee-script'
+
+" Markdown support
+Bundle 'tpope/vim-markdown'
 
 "{{{Auto Commands
 
@@ -77,7 +85,7 @@ Bundle 'airblade/vim-gitgutter'
 " set autochdir
 
 " Remove any trailing whitespace that is in the file
-autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
+" autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
 " Restore cursor position to where it was before
 augroup JumpCursorOnEdit
@@ -152,6 +160,7 @@ set expandtab
 set smarttab
 set shiftwidth=2
 set softtabstop=2
+set tabstop=2
 
 " Spell checking (default=false)
 if version >= 700
@@ -271,17 +280,19 @@ endfunction
 "if windows
 "set undodir=C:\Windows\Temp
 "otherwise
-set undodir=~/.tmp/undodir
 set undofile                " Save undo's after file closes
+set undodir=/Users/mmoutenot/.tmp/undodir
 set undolevels=1000         " How many undos
 set undoreload=10000        " number of lines to save for undo
+set hidden
 "}}}
 
 "}}}
 
 "{{{ Mappings
 
-let mapleader = ","
+vmap <C-x> :!pbcopy<CR>  
+vmap <C-c> :w !pbcopy<CR><CR> 
 
 " GIT Commands
 noremap <Leader>gac :Gcommit -m -a ""<LEFT>
@@ -431,9 +442,6 @@ noremap <D-S-J> <C-w>j
 noremap <D-S-K> <C-w>k
 noremap <D-S-L> <C-w>l
 
-" open terminal in vim
-noremap <leader>ksh :ConqueTermSplit /bin/ksh<cr>
-
 " DJANGO STUFF
 " let g:last_relative_dir = ''
 " nnoremap \1 :call RelatedFile ("models.py")<cr>
@@ -517,3 +525,5 @@ noremap <leader>ksh :ConqueTermSplit /bin/ksh<cr>
 " Always show line numbers and current position. ALWAYS!
 set ruler
 set number
+set mouse=a
+
